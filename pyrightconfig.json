@@ -1,0 +1,12 @@
+{
+    "venvPath": ".",
+    "venv": "venv",
+    "pythonPath": "./venv/Scripts/python.exe",
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "venv"
+    ],
+    "typeCheckingMode": "off"
+}

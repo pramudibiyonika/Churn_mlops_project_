@@ -1,0 +1,45 @@
+# DVC Pipeline - Developed by: cit-23-02-0153
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+      - src/data_ingestion.py
+      - data/raw/telco_customer_churn_data.csv
+    outs:
+      - data/processed/churn_data.csv
+
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+      - src/preprocessing.py
+      - data/processed/churn_data.csv
+    outs:
+      - data/processed/X_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+
+  training:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed/X_train.csv
+      - data/processed/X_test.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+    outs:
+      - models/LogisticRegression_confusion_matrix.png
+      - models/LogisticRegression_roc_curve.png
+      - models/RandomForest_confusion_matrix.png
+      - models/RandomForest_roc_curve.png
+      - models/XGBoost_confusion_matrix.png
+      - models/XGBoost_roc_curve.png
+
+  evaluation:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - data/processed/X_test.csv
+      - data/processed/y_test.csv
+    outs:
+      - models/best_model_info.txt

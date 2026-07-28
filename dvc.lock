@@ -1,0 +1,114 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: data/raw/telco_customer_churn_data.csv
+      hash: md5
+      md5: 0f9de68e012bd3aed5fa7cdc9fc421af
+      size: 977501
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 5bf869e4a2982dd40d661786f3997c81
+      size: 671
+    outs:
+    - path: data/processed/churn_data.csv
+      hash: md5
+      md5: 7f07de26b054de4c36eed95a1277fe21
+      size: 978285
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+    - path: data/processed/churn_data.csv
+      hash: md5
+      md5: 7f07de26b054de4c36eed95a1277fe21
+      size: 978285
+    - path: src/preprocessing.py
+      hash: md5
+      md5: 8906828dda3281324b5dec30280ca0b1
+      size: 1903
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 943e2f904da7256fa8d18ef71b66f82e
+      size: 525400
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 50192fd00180eca47a3c21d464b4d27a
+      size: 2099596
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 201501840c586317ad0f805ea0d84683
+      size: 4234
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 926d3a60b321ffecd9e602d5d259a705
+      size: 16909
+  training:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 943e2f904da7256fa8d18ef71b66f82e
+      size: 525400
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 50192fd00180eca47a3c21d464b4d27a
+      size: 2099596
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 201501840c586317ad0f805ea0d84683
+      size: 4234
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 926d3a60b321ffecd9e602d5d259a705
+      size: 16909
+    - path: src/train.py
+      hash: md5
+      md5: 5d1982d55c89ef06e861b06646015b25
+      size: 5130
+    outs:
+    - path: models/LogisticRegression_confusion_matrix.png
+      hash: md5
+      md5: 074009fc8a0fab3119746d5c02278134
+      size: 24429
+    - path: models/LogisticRegression_roc_curve.png
+      hash: md5
+      md5: 58721c894e6a5b8c75076ba20a451078
+      size: 29222
+    - path: models/RandomForest_confusion_matrix.png
+      hash: md5
+      md5: 37f63219160c21a0b03d818bdb0ac935
+      size: 24501
+    - path: models/RandomForest_roc_curve.png
+      hash: md5
+      md5: 3d0c52906387a1f0c60b4b75db4b5224
+      size: 28778
+    - path: models/XGBoost_confusion_matrix.png
+      hash: md5
+      md5: 83235d892ab317827f656989a5c4e41b
+      size: 23710
+    - path: models/XGBoost_roc_curve.png
+      hash: md5
+      md5: 8be1e3f157774c07fce7a1d3304673bb
+      size: 28366
+  evaluation:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 943e2f904da7256fa8d18ef71b66f82e
+      size: 525400
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 201501840c586317ad0f805ea0d84683
+      size: 4234
+    - path: src/evaluate.py
+      hash: md5
+      md5: 0454ae66231b7d830677a422b6dc1e4c
+      size: 1499
+    outs:
+    - path: models/best_model_info.txt
+      hash: md5
+      md5: 5d2b5df3c6caf25f6dc4f2dbc1bcffd2
+      size: 85
