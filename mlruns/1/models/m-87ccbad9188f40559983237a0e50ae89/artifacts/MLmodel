@@ -1,0 +1,23 @@
+artifact_path: file:D:/SLTC/S6/Machine Learning - CCS4340/Week 9/churn-mlops-project/mlruns/1/models/m-87ccbad9188f40559983237a0e50ae89/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-87ccbad9188f40559983237a0e50ae89
+model_size_bytes: 520395
+model_uuid: m-87ccbad9188f40559983237a0e50ae89
+prompts: null
+run_id: cbce915db748446d9a62a0f91423c1fb
+utc_time_created: '2026-03-10 19:02:37.511827'
