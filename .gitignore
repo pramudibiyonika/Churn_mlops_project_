@@ -1,0 +1,31 @@
+venv/
+myenv/
+__pycache__/
+*.pyc
+.env
+models/*.pkl
+mlflow.db
+# Virtual environments
+airflow-env/
+venv/
+env/
+.venv/
+
+# Airflow
+airflow/airflow.db
+airflow/airflow.cfg
+logs/
+
+# Data files
+data/processed/
+data/raw/
+*.csv
+*.parquet
+*.pkl
+*.joblib
+*.h5
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
